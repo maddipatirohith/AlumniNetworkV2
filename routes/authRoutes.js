@@ -5,11 +5,11 @@ const { body, validationResult } = require('express-validator');
 var jwt = require('jsonwebtoken');
 var fetchuser = require('../middleware/fetchuser');
 const bcrypt = require('bcryptjs');
+const path = require('path');
 
 const JWT_SECRET = 'RohitIsAGee$k';
 
 // ROUTE 1: Create a User using: POST "/api/auth/createuser". No login required
-
 router.post('/createuser', [
     body('userName', 'Enter a valid name').isLength({ min: 3 }),
     body('email', 'Enter a valid email').isEmail(),
@@ -39,7 +39,7 @@ router.post('/createuser', [
 
         if (req.body.accepted === "Accepted") {
             user = await User.findByIdAndUpdate({ _id: user.id }, { accepted: "Accepted" }, (err, res) => {
-                console.log(res);
+                
             })
         }
 
@@ -126,16 +126,14 @@ router.post('/getuser', fetchuser, async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 })
-
 // ROUTE 4: Update loggedin User Details using: POST "/api/auth/updateuser". Login required
 router.post('/updateuser', fetchuser, async (req, res) => {
+
     //find by id and delete user
     const userId = req.user.id;
     const user = await User.findById(userId)
 
-
-
-    const { userName, email, password, description, phoneNo, gender, qualification, cgpa, prevWork, dob, organisation, lookingForJob } = req.body;
+    const { userName, email, password, description, phoneNo, gender, qualification, cgpa, prevWork, dob, organisation, lookingForJob,profileImage } = req.body;
     const newObject = {}
 
     if (userName !== user.userName) newObject.userName = userName;
@@ -151,11 +149,13 @@ router.post('/updateuser', fetchuser, async (req, res) => {
     if (lookingForJob !== user.lookingForJob) newObject.lookingForJob = lookingForJob;
 
     const note = await User.findByIdAndUpdate(userId, { $set: newObject }, { new: true })
-    console.log(note)
+
+    
 
     //Create user with new details
     res.send({ obj: "value" })
 })
+
 
 router.post('/profile', async (req, res) => {
 
