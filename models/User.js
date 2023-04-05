@@ -50,6 +50,12 @@ const UserSchema = new mongoose.Schema(
 		lookingForJob:{
 			type:String,
 			default:"Yes"
+		},
+		profileImage:{
+			type:String
+		},
+		resume:{
+			type:String
 		}
 	}
 )
