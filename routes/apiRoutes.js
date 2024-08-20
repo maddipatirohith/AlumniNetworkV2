@@ -15,7 +15,7 @@ router.post("/newEvent", (req, res) => {
             if (err) console.log(err)
             else console.log("Added Successfully")
         })
-        res.send("Success")
+        res.send("Successful")
 
     } catch (error) {
         console.error(error.message);
@@ -34,7 +34,7 @@ router.post("/newNotice", (req, res) => {
             if (err) console.log(err)
             else console.log("Added Successfully")
         })
-        res.send("Success")
+        res.send("Successful")
 
     } catch (error) {
         console.error(error.message);
