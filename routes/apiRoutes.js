@@ -80,7 +80,7 @@ router.get("/getNewUsers", (req, res) => {
             if (err) console.log(err)
             else {
                 data.forEach((dataPoint) => {
-                    if (dataPoint.organisation !== "college") {
+                    if (dataPoint.organisation !== "College") {
                         arr.push(dataPoint)
                     }
                 })
@@ -138,7 +138,7 @@ router.get("/getAlumni", (req, res) => {
             if (err) console.log(err)
             else {
                 data.forEach((dataPoint) => {
-                    if (dataPoint.organisation !== "college" && dataPoint.organisation !== "Company") {
+                    if (dataPoint.organisation !== "College" && dataPoint.organisation !== "Company") {
                         arr.push(dataPoint)
                     }
                 })
